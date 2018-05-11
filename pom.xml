@@ -4,7 +4,7 @@
 
 	<groupId>com.example</groupId>
 	<artifactId>devops</artifactId>
-	<version>1.0.0-SNAPSHOT</version>
+	<version>1.2.4-SNAPSHOT</version>
 	<packaging>war</packaging>
 
 	<name>devops</name>
@@ -27,12 +27,12 @@
 		<repository>
 			<id>release</id>
 			<name>releases</name>
-			<url>http://54.255.206.148:8081/artifactory/libs-release-local</url>
+			<url>http://13.250.100.5:8081/artifactory/libs-release-local</url>
 		</repository>
 		<snapshotRepository>
 			<id>snapshot</id>
 			<name>snapshots</name>
-			<url>http://54.255.206.148:8081/artifactory/libs-snapshot-local</url>
+			<url>http://13.250.100.5:8081/artifactory/libs-snapshot-local</url>
 		</snapshotRepository>
 	</distributionManagement>
 
