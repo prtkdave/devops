@@ -21,20 +21,18 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
-		<surefire.version>2.17</surefire.version>
-		<jacoco.version>0.7.9</jacoco.version>
 	</properties>
 
 	<distributionManagement>
 		<repository>
 			<id>release</id>
 			<name>releases</name>
-			<url>http://localhost:8081/artifactory/libs-release-local</url>
+			<url>http://13.250.100.5:8081/artifactory/libs-release-local</url>
 		</repository>
 		<snapshotRepository>
 			<id>snapshot</id>
 			<name>snapshots</name>
-			<url>http://localhost:8081/artifactory/libs-snapshot-local</url>
+			<url>http://13.250.100.5:8081/artifactory/libs-snapshot-local</url>
 		</snapshotRepository>
 	</distributionManagement>
 
@@ -54,9 +52,9 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-		<dependency>
-		    <groupId>org.springframework.boot</groupId>
-		    <artifactId>spring-boot-starter-logging</artifactId>
+                <dependency>
+		        <groupId>org.springframework.boot</groupId>
+       		        <artifactId>spring-boot-starter-logging</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -90,27 +88,7 @@
 					<autoVersionSubmodules>true</autoVersionSubmodules>
 				</configuration>
 			</plugin>
-			<plugin>
-			  <groupId>org.apache.maven.plugins</groupId>
-			  <artifactId>maven-surefire-plugin</artifactId>
-			  <version>${surefire.version}</version><!--$NO-MVN-MAN-VER$-->
-			</plugin>
-			<plugin>
-			    <groupId>org.jacoco</groupId>
-			    <artifactId>jacoco-maven-plugin</artifactId>
-			    <version>${jacoco.version}</version>
-			    <executions>
-			        <execution>
-			            <id>default-prepare-agent</id>
-			            <goals><goal>prepare-agent</goal></goals>
-			        </execution>
-			        <execution>
-			            <id>default-report</id>
-			            <phase>prepare-package</phase>
-			            <goals><goal>report</goal></goals>
-			        </execution>
-			    </executions>
-			</plugin>
 		</plugins>
 	</build>
+
 </project>
