@@ -4,26 +4,7 @@
 
 	<groupId>com.example</groupId>
 	<artifactId>devops</artifactId>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-	<version>1.3.1-SNAPSHOT</version>
-=======
-	<version>1.4.0-SNAPSHOT</version>
->>>>>>> 926ed2d34f9aee3f37637d52a46b08bc138dba62
-=======
-	<version>1.2.4-SNAPSHOT</version>
->>>>>>> 24d684a0c8e07beea29b29d3aabd24489523a728
-=======
-
-	<version>1.3.1-SNAPSHOT</version>
-
-
->>>>>>> 5acd75b3f05157ebf1e61e3f02391ff3a2127815
-=======
 	<version>1.4.3-SNAPSHOT</version>
->>>>>>> a6c72ca2b34efa3659a6ed40d9d433be8773a85c
 	<packaging>war</packaging>
 
 	<name>devops</name>
