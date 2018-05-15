@@ -8,7 +8,8 @@ cd $r
 root=$(git rev-parse --show-toplevel)
 cd $root
 repo=$(basename $root)
-user=$(git config --global --get user.name)
+user=prtkdave
+#user=$(git config --global --get user.name)
 output=$(bundle exec rake test)
 output=$(echo $output | sed 's/.*\(Finished tests in [0-9.]\+s, [0-9.]\+ tests\/s, [0-9.]\+ assertions\/s\.\).*[^0-9]\([0-9]\+ tests, .*\)/\1 \2/g' | sed 's/Finished tests/executed tests/g')
 rev=$(git log -1 --format=format:%h)
