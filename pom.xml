@@ -14,7 +14,7 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>1.5.6.RELEASE</version>
-		<relativePath /> <!-- look parent from repository -->
+		<relativePath /> <!-- lookup for parent from repository -->
 	</parent>
 
 	<properties>
