@@ -1,10 +1,25 @@
-pipeline { 
-    agent any  
-    stages { 
-        stage('Build') { 
-            steps { 
-               echo 'This is a minimal pipeline.' 
+pipeline {
+    agent any
+    tools { 
+        maven 'MAVEN'  
+    }
+    stages {
+        stage ('Initialize') {
+            steps {
+                sh '''
+                    echo "JAVA_HOME = /usr/lib/jvm/oracle_jdk8"
+	            echo "M2_HOME= /usr/local/apache-maven"
+                    echo "M2_HOME = ${M2_HOME}"
+	            echo "PATH = ${M2_HOME}/bin:${PATH}"
+                ''' 
+            }
+        }
+
+        stage ('Build') {
+            steps {
+                echo 'This is a minimal pipeline.'
             }
         }
     }
 }
+
