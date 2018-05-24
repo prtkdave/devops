@@ -3,42 +3,26 @@ pipeline {
     tools {
         maven 'MAVEN'
     }
-    stages {
-        stage ('Initialize') {
-            steps {
-                sh 'source /etc/profile.d/apache-maven.sh'
-            }
-        }
-
-        stage ('Build') {
-            steps {
-                sh 'mvn Dmaven.test.failure.ignore clean package' 
-            }
-		}
-        stage('Unit Test') {
-            steps  {
-       		    junit '**/target/surefire-reports/TEST-*.xml'
-                archive 'target/*.jar'
-            }
-		}
-        stage('Integration Test') {
-            steps  {
-                sh 'mvn Dmaven.test.failure.ignore clean verify'       		    
-            }
-		}
-		stage('Sonar') {
-            steps  {
-                sh 'mvn Dmaven.test.failure.ignore clean package sonar:sonar'       		    
-            }
-		}
-		stage('Deploy') {
-                sh 'curl -u jenkins:jenkins -T target/**.war "http://localhost:8080/manager/text/deploy?path=/devops&update=true"'
-        }
-		
-	    stage("Smoke Test"){
-                sh 'curl --retry-delay 10 --retry 5 http://localhost:8080/devops'
-        }
+    stage ('Initialize') {            
+        sh 'source /etc/profile.d/apache-maven.sh'         
     }
-			
+    stage ('Build') {            
+        sh 'mvn Dmaven.test.failure.ignore clean package'            
+	}
+    stage('Unit Test') {            
+        junit '**/target/surefire-reports/TEST-*.xml'
+        archive 'target/*.jar'           
+	}
+    stage('Integration Test') {            
+        sh 'mvn Dmaven.test.failure.ignore clean verify'       		                
+	}
+	stage('Sonar') {
+        sh 'mvn Dmaven.test.failure.ignore clean package sonar:sonar'       		                
+	}
+	stage('Deploy') {
+        sh 'curl -u jenkins:jenkins -T target/**.war "http://localhost:8080/manager/text/deploy?path=/devops&update=true"'
+    }		
+	stage("Smoke Test"){
+        sh 'curl --retry-delay 10 --retry 5 http://localhost:8080/devops'
+    }
 }
-
