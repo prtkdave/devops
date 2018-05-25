@@ -8,17 +8,46 @@ pipeline {
             steps {
                 sh '''
                     echo "JAVA_HOME = /usr/lib/jvm/oracle_jdk8"
-	            echo "M2_HOME= /usr/local/apache-maven"
+					echo "M2_HOME= /usr/local/apache-maven"
                     echo "M2_HOME = ${M2_HOME}"
-	            echo "PATH = ${M2_HOME}/bin:${PATH}"
+					echo "PATH = ${M2_HOME}/bin:${PATH}"
                 ''' 
             }
         }
-
         stage ('Build') {
             steps {
                 echo 'This is a minimal pipeline.'
-                sh "mvn -Dmaven.test.failure.ignore clean package"
+				sh "mvn -Dmaven.test.failure.ignore clean package"
+            }
+        }
+		stage ('Unit Test') {
+            steps {
+                echo 'Started Unit testing'
+				junit '**/target/surefire-reports/TEST-*.xml'
+				archive 'target/*.jar'
+            }
+        }
+		stage ('Integration Test') {
+            steps {
+                echo 'Integration Test Started.'
+				sh "mvn -Dmaven.test.failure.ignore clean verify"
+            }
+        }
+		stage ('Sonar') {
+            steps {
+                echo 'Code Coverage test started'
+				sh "mvn sonar:sonar"
+            }
+        }
+		stage ('Deploy') {
+            steps {
+                echo 'Deployment started'
+				sh 'curl -u jenkins:jenkins -T target/**.war "http://localhost:8080/manager/text/deploy?path=/devops&update=true"'
+            }
+        }
+		stage ('Smoke Test') {
+            steps {
+                sh "curl --retry-delay 10 --retry 5 http://localhost:8080/devops"
             }
         }
     }
